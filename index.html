@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue JS</title>
+  </head>
+  <body>
+
+    <div id="app">
+
+      <ul id="v-for-todo" class="demo">
+        <li v-for="value in todo">
+          {{ value.libelle }}
+        </li>
+      </ul>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      let xhr = new XMLHttpRequest();
+      let todos;
+      xhr.open("GET", "http://127.0.0.1:8000/api/todo/", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send(null);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            todos = JSON.parse(xhr.responseText); 
+            const app = new Vue({
+            el: '#app',
+            data: {
+              todo: todos,
+            }
+          });
+        }
+      };
+    </script>
+  </body>
+</html>
