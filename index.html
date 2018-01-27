@@ -9,7 +9,14 @@
 
       <ul id="v-for-todo" class="demo">
         <li v-for="value in todo">
-          {{ value.id }} - {{ value.libelle }} - {{ value.valider }}
+          <div v-if="value.valider == 1 ">
+            <strike v-if="value.valider == 1 ">
+               {{ value.id }} - {{ value.libelle }} 
+            </strike>
+          </div>  
+          <div v-else>
+            {{ value.id }} - {{ value.libelle }} 
+          </div>  
         </li>
       </ul>
 
